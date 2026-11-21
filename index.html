@@ -1,0 +1,257 @@
+<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#ffffff"><title>Listi app</title><style>
+:root{color-scheme:dark;--bg:#050505;--panel:#242424;--text:#f5f5f5;--muted:#aaa;--green:#18c768}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:16px system-ui,-apple-system,sans-serif}main{max-width:520px;margin:auto;padding:22px 18px 50px}header{display:flex;align-items:center;justify-content:space-between;margin-bottom:26px}h1{font-size:27px;margin:0;letter-spacing:-.7px}.tag{color:var(--green);background:#092617;border-radius:20px;padding:6px 12px;font-size:13px;font-weight:700}.camera{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:13px;background:var(--panel);border-radius:18px;padding:35px 15px;width:100%;cursor:pointer;min-height:190px}.camera svg{width:45px;height:45px;color:#b9b9b9}.camera strong{font-size:23px}.hint{color:var(--muted);font-size:14px;text-align:center}.section{margin-top:24px}.ai{color:var(--green);font-weight:700;font-size:17px;margin-bottom:13px}.result{background:var(--panel);border-radius:17px;padding:20px}.small{font-size:12px;color:var(--muted);font-weight:700;letter-spacing:.04em;margin-bottom:14px}.item{display:flex;align-items:center;gap:13px;margin:12px 0}.item input[type=checkbox]{appearance:none;-webkit-appearance:none;width:27px;height:27px;border:2px solid #aaa;border-radius:50%;background:transparent;flex:none;position:relative;cursor:pointer;margin:0}.item input[type=checkbox]:checked{border-color:#bcbcbc;background:#393939}.item input[type=checkbox]:checked:after{content:"";position:absolute;inset:3px;background:#f5f5f5;clip-path:polygon(10% 0,50% 39%,90% 0,100% 10%,61% 50%,100% 90%,90% 100%,50% 61%,10% 100%,0 90%,39% 50%,0 10%)}.item.done input[type=text]:not(:focus){text-decoration:line-through;color:#858585;opacity:.48}.item.done{opacity:.8}.item input[type=text]{font:19px system-ui;color:white;background:transparent;border:0;border-bottom:1px solid transparent;width:100%;min-width:0;padding:4px 0}.item input[type=text]:focus{outline:none;border-color:var(--green);text-decoration:none!important;color:#fff!important;opacity:1!important}.edit-word{flex:none;background:transparent;color:#aaa;padding:7px;border-radius:9px;font-size:18px;line-height:1}.edit-word:focus-visible{outline:2px solid var(--green)}button{border:0;border-radius:13px;padding:14px 17px;background:var(--green);color:#07180e;font-weight:750;font-size:15px;cursor:pointer}.secondary{background:#343434;color:#fff}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:17px}.status{color:#bbb;font-size:14px;line-height:1.5;margin-top:13px;white-space:pre-wrap}.settings{margin-top:28px;border-top:1px solid #292929;padding-top:17px}details summary{cursor:pointer;color:#aaa;font-size:14px}label.field{display:block;color:#ccc;font-size:13px;margin:15px 0 7px}input[type=password],textarea{width:100%;background:#242424;color:#fff;border:1px solid #444;border-radius:10px;padding:13px;font:15px system-ui}textarea{min-height:90px;resize:vertical}.preview{max-height:190px;max-width:100%;border-radius:12px;margin-top:12px;display:none}.spinner{display:inline-block;width:15px;height:15px;border:2px solid #aaa;border-top-color:var(--green);border-radius:50%;animation:spin .8s linear infinite;vertical-align:middle}@keyframes spin{to{transform:rotate(360deg)}}.muted{color:#aaa;font-size:13px;line-height:1.5}.empty{color:#aaa;font-size:15px}.completion{display:none;align-items:center;gap:10px;color:var(--green);font-weight:750;font-size:18px;margin:0 0 15px}.completion.show{display:flex}.completion .tick{border:2px solid var(--green);border-radius:50%;width:30px;height:30px;display:grid;place-items:center}.extra{margin-top:28px;border-top:1px solid #292929;padding-top:19px}.extra summary{font-weight:600}.mode-options{display:flex;gap:9px;margin:14px 0}.mode-options button{flex:1}.mode-options button.selected{background:#123a25;color:#55e493;border:1px solid #18c768}.text-result{width:100%;min-height:180px;line-height:1.6;resize:vertical}.saved{margin-top:26px}.saved-row{display:flex;align-items:center;gap:9px;padding:12px 0;border-bottom:1px solid #333}.saved-row .saved-name{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;background:transparent;color:#eee;text-align:left;padding:8px 0}.saved-row .mini{padding:9px 11px;font-size:13px}.name-field{width:100%;background:#242424;color:#fff;border:1px solid #555;border-radius:10px;padding:12px;font:16px system-ui;margin-top:12px}.save-panel{margin-top:13px}.save-panel[hidden]{display:none}.saved[hidden]{display:none}input[type=file]{display:none}h1.brand{font-family:"Avenir Next","Century Gothic","Trebuchet MS",sans-serif;font-size:39px;line-height:1.04;font-weight:700;letter-spacing:-2px;color:#7befff;text-shadow:0 0 12px rgba(44,225,255,.5),0 0 28px rgba(20,177,255,.22)}.brand-sub{display:block;margin-top:7px;font-family:"Avenir Next","Century Gothic","Trebuchet MS",sans-serif;font-size:11px;line-height:1.2;font-weight:600;letter-spacing:2.8px;color:#a7f4ff;text-shadow:0 0 10px rgba(44,225,255,.35)}header{gap:12px}header .tag{flex-shrink:0}
+/* Listi light edition — warm ivory, cobalt and coral */
+:root{color-scheme:light;--bg:#f7f6f1;--panel:#ffffff;--text:#202c39;--muted:#6f7b86;--green:#2563eb}
+body{background:var(--bg);color:var(--text)}
+h1.brand{color:#2456d9;text-shadow:none;font-weight:800}
+.brand-sub{color:#e26b58;text-shadow:none}
+.tag{background:#e3ecff;color:#2456d9}
+.camera{background:#e8f0ff;border:1px solid #d8e4ff;box-shadow:0 8px 25px rgba(47,84,139,.07)}
+.camera svg{color:#2456d9}.camera strong{color:#1f3d78}
+.result{background:#fff;border:1px solid #e6e9ed;box-shadow:0 8px 25px rgba(34,49,72,.05)}
+.ai{color:#2456d9}.small{color:#7c8795}
+.item input[type=checkbox]{border-color:#8c9bac}
+.item input[type=checkbox]:checked{border-color:#e26b58;background:#ffe9e5}
+.item input[type=checkbox]:checked:after{background:#d85d4b}
+.item input[type=text]{color:#263345}
+.item input[type=text]:focus{color:#263345!important}
+.item.done input[type=text]:not(:focus){color:#85909a;opacity:.6}
+.edit-word{color:#63758a}
+button{background:#2456d9;color:#fff}.secondary{background:#e9edf3;color:#253b58}
+.status{color:#627184}.settings,.extra{border-top-color:#dde3e9}
+details summary{color:#45566c}label.field{color:#45566c}
+input[type=password],textarea,.name-field{background:#fff;color:#263345;border-color:#d4dce6}
+.muted,.empty{color:#718093}
+.completion{color:#14815b}.completion .tick{border-color:#14815b}
+.mode-options button.selected{background:#e4edff;color:#2456d9;border:1px solid #2456d9}
+.saved-row{border-bottom-color:#e2e6ec}.saved-row .saved-name{color:#253b58}
+.spinner{border-color:#cad4e2;border-top-color:#2456d9}
+button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid #2456d9;outline-offset:2px}
+
+/* Listi app — editorial plum / lime identity */
+:root{--bg:#faf8f4;--green:#633e80;--text:#292432}
+body{background:var(--bg);color:var(--text)}
+header{align-items:center;margin-bottom:30px}
+h1.brand{display:flex;align-items:baseline;gap:9px;font-family:Georgia,"Iowan Old Style","Palatino Linotype",serif;font-size:49px;font-style:italic;font-weight:700;letter-spacing:-3.5px;line-height:1.05;color:#603779;text-shadow:none}
+.brand-app{font-family:"Avenir Next",system-ui,sans-serif;font-size:17px;font-weight:800;font-style:normal;letter-spacing:-.6px;color:#ef775d}
+.brand-dot{color:#a4be55;font-size:26px}
+.tag{background:#f0e8f5;color:#603779}
+.camera{background:#f1eaf5;border:1px solid #e7dced;box-shadow:0 8px 24px rgba(92,53,111,.055)}
+.camera svg,.camera strong,.ai{color:#603779}
+.result{border-color:#ebe5e9}
+button{background:#603779;color:white}
+.secondary{background:#eee8f1;color:#50365f}
+.item input[type=checkbox]:checked{border-color:#a4be55;background:#edf3d9}
+.item input[type=checkbox]:checked:after{background:#607e2c}
+.completion,.completion .tick{color:#607e2c;border-color:#607e2c}
+.mode-options button.selected{background:#f0e8f5;color:#603779;border-color:#603779}
+.spinner{border-top-color:#603779}
+button:focus-visible,input:focus-visible,textarea:focus-visible{outline-color:#603779}
+@media(max-width:360px){h1.brand{font-size:43px}.tag{font-size:11px;padding:6px 9px}}
+
+/* Listi fresh daylight theme: enforce light appearance in embedded WebViews */
+:root{color-scheme:light!important;--bg:#f4f9f5;--panel:#ffffff;--text:#16372e;--muted:#617c73;--green:#087e68}
+html,body{background:#f4f9f5!important;color:#16372e!important;color-scheme:light!important}
+main{background:#f4f9f5}
+meta[name="theme-color"]{color:#f4f9f5}
+h1.brand{color:#087e68;text-shadow:none}.brand-app{color:#ed8a35}.brand-dot{color:#087e68}
+.tag{background:#def3eb;color:#087e68}
+.camera{background:#e2f4eb;border-color:#c7e6d8;box-shadow:none}
+.camera svg,.camera strong,.ai{color:#087e68}
+.result{background:#fff;border:1px solid #dceae2;box-shadow:0 7px 24px rgba(12,77,59,.045)}
+button{background:#087e68;color:#fff}.secondary{background:#e5eee9;color:#174c3e}
+.item input[type=checkbox]{border-color:#83a79a}
+.item input[type=checkbox]:checked{border-color:#087e68;background:#d9f1e6}
+.item input[type=checkbox]:checked:after{background:#087e68}
+.item input[type=text],.item input[type=text]:focus{color:#16372e!important}
+.item.done input[type=text]:not(:focus){color:#78938a!important}
+.edit-word{color:#548476}.status,.muted,.empty{color:#617c73}
+.small{color:#648276}.completion,.completion .tick{color:#087e68;border-color:#087e68}
+.settings,.extra{border-top-color:#d5e7dd}details summary,label.field{color:#345d50}
+input[type=password],textarea,.name-field{background:#fff;color:#16372e;border-color:#c5dcd0}
+.saved-row{border-bottom-color:#d8e9df}.saved-row .saved-name{color:#174c3e}
+.mode-options button.selected{background:#d9f2e7;color:#087e68;border-color:#087e68}
+.spinner{border-top-color:#087e68}
+button:focus-visible,input:focus-visible,textarea:focus-visible{outline-color:#087e68}
+#clearList{background:#f9e8df;color:#a74727}
+
+/* Deep emerald with consistently white typography */
+:root{color-scheme:dark!important;--bg:#08614f;--panel:#0b725e;--text:#ffffff;--muted:#d4eee6;--green:#b8f4db}
+html,body,main{background:#08614f!important;color:#ffffff!important;color-scheme:dark!important}
+h1.brand,h1.brand .brand-app,h1.brand .brand-dot{color:#ffffff!important}
+.tag{background:#157d68;color:#fff}
+.camera{background:#0c7964;border:1px solid #39a58b;box-shadow:none}
+.camera svg,.camera strong,.ai{color:#ffffff!important}
+.hint,.small,.status,.muted,.empty{color:#d4eee6!important}
+.result{background:#0b725e;border:1px solid #3b9f8a;box-shadow:none}
+.item input[type=text],.item input[type=text]:focus{color:#fff!important}
+.item.done input[type=text]:not(:focus){color:#d4eee6!important;opacity:.55}
+.item input[type=checkbox]{border-color:#d6f5ec}
+.item input[type=checkbox]:checked{border-color:#fff;background:#167c67}
+.item input[type=checkbox]:checked:after{background:#fff}
+.edit-word{color:#fff}
+button{background:#ffffff;color:#08614f}
+.secondary{background:#166f5d;color:#fff;border:1px solid #56ac98}
+.completion,.completion .tick{color:#fff;border-color:#fff}
+.settings,.extra{border-top-color:#4fa58f}
+details summary,label.field{color:#fff}
+input[type=password],textarea,.name-field{background:#0c6d59;color:#fff;border-color:#64b5a0}
+input::placeholder,textarea::placeholder{color:#c2e4d9}
+.saved-row{border-bottom-color:#4fa58f}.saved-row .saved-name{color:#fff}
+.mode-options button.selected{background:#fff;color:#08614f;border-color:#fff}
+.spinner{border-top-color:#fff}
+button:focus-visible,input:focus-visible,textarea:focus-visible{outline-color:#fff}
+#clearList{background:#a73f2b;color:#fff;border-color:#dc7c68}
+
+/* Listi — clean white / orange edition */
+:root{color-scheme:light!important;--bg:#ffffff;--panel:#ffffff;--text:#191919;--muted:#737373;--green:#f36a21}
+html,body,main{background:#ffffff!important;color:#191919!important;color-scheme:light!important}
+header{margin-bottom:30px}
+h1.brand{font-family:Georgia,"Iowan Old Style",serif;font-style:italic;font-size:51px;font-weight:700;letter-spacing:-3px;color:#161616!important;text-shadow:none}
+h1.brand .brand-app{font-family:system-ui,sans-serif;font-size:15px;font-style:normal;font-weight:750;letter-spacing:-.4px;color:#f36a21!important}
+h1.brand .brand-dot{color:#f36a21!important}
+.tag{background:#fff4ed!important;color:#d45414!important;border:1px solid #ffe0cd}
+.camera{background:#fff!important;border:1.5px solid #dedede!important;box-shadow:none!important;border-radius:20px}
+.camera svg,.camera strong{color:#191919!important}.camera svg{color:#f36a21!important}
+.ai{color:#e45d18!important}.hint,.small,.status,.muted,.empty{color:#737373!important}
+.result{background:#fff!important;border:1px solid #e5e5e5!important;box-shadow:none!important}
+.item input[type=text],.item input[type=text]:focus{color:#191919!important}
+.item.done input[type=text]:not(:focus){color:#999!important;opacity:.65}
+.item input[type=checkbox]{border-color:#a8a8a8!important;background:#fff!important}
+.item input[type=checkbox]:checked{border-color:#f36a21!important;background:#fff1e8!important}
+.item input[type=checkbox]:checked:after{background:#e45d18!important}
+.edit-word{color:#e45d18!important}
+button{background:#f36a21!important;color:#fff!important;border:1px solid #f36a21!important}
+.secondary{background:#fff!important;color:#242424!important;border:1px solid #dedede!important}
+.completion,.completion .tick{color:#e45d18!important;border-color:#e45d18!important}
+.settings,.extra{border-top-color:#e8e8e8!important}details summary,label.field{color:#333!important}
+input[type=password],textarea,.name-field{background:#fff!important;color:#191919!important;border:1px solid #d6d6d6!important}
+input::placeholder,textarea::placeholder{color:#999!important}
+.saved-row{border-bottom-color:#ececec!important}.saved-row .saved-name{color:#191919!important}
+.mode-options button.selected{background:#fff1e8!important;color:#cf4f0c!important;border-color:#f36a21!important}
+.spinner{border-top-color:#f36a21!important}
+button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid #f36a21!important;outline-offset:2px}
+#clearList{background:#fff!important;color:#a83d23!important;border:1px solid #efc5b9!important}
+@media(max-width:360px){h1.brand{font-size:44px}}
+
+/* Subtle green completion + understated editing */
+.item input[type=checkbox]:checked{border-color:#16845a!important;background:#e8f7ee!important}
+.item input[type=checkbox]:checked:after{background:#16845a!important}
+.item.done input[type=text]:not(:focus){color:#89958d!important;opacity:.58;text-decoration:line-through}
+.edit-word,.edit-word.secondary{background:transparent!important;color:#9aa29c!important;border:0!important;box-shadow:none!important;padding:7px!important;min-width:32px!important;font-size:19px!important}
+.edit-word:focus-visible{outline:2px solid #16845a!important}
+.completion,.completion .tick{color:#16845a!important;border-color:#16845a!important}
+/* Individual item removal: subtle, accessible, no colored button background */
+.delete-word{background:transparent!important;color:#a0a0a0!important;border:0!important;box-shadow:none!important;padding:7px 5px!important;min-width:30px!important;font-size:20px!important;font-weight:400!important;line-height:1!important}
+.delete-word:focus-visible{outline:2px solid #16845a!important}
+.delete-word:active{color:#b64b3b!important}
+</style></head><body><main>
+<header><h1 class="brand">listi<span class="brand-app">app<span class="brand-dot">.</span></span></h1><span class="tag">KI-Erkennung</span></header>
+<label class="camera" for="photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h-4L8 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-4z"/><circle cx="12" cy="13" r="4"/></svg><strong>Foto aufnehmen</strong><span class="hint">Handschriftliche Liste fotografieren</span></label>
+<input id="photo" type="file" accept="image/*" capture="environment"><img id="preview" class="preview" alt="Aufgenommenes Foto">
+<section class="section"><div class="ai">✧ Automatisch mit Gemini erkennen</div><div class="result"><div id="completion" class="completion"><span class="tick">✓</span><span>All done</span></div><div class="small" id="resultLabel">ERGEBNIS</div><div id="items"><div class="empty">Deine erkannte Liste erscheint hier.</div></div></div><div class="actions"><button id="copy" class="secondary" hidden>Liste kopieren</button><button id="add" class="secondary">+ Lebensmittel</button><button id="retry" class="secondary" hidden>Erneut versuchen</button><button id="saveList" hidden>Liste speichern</button><button id="clearList" class="secondary" hidden>Liste leeren</button></div><div id="savePanel" class="save-panel" hidden><input id="listName" class="name-field" type="text" maxlength="70" placeholder="Name der Liste, z. B. Einkauf Freitag" aria-label="Listenname"><div class="actions"><button id="confirmSave">Speichern</button><button id="cancelSave" class="secondary">Abbrechen</button></div></div><div id="status" class="status" role="status"></div><div class="saved" id="savedSection"><div class="small">GESPEICHERTE LISTEN</div><div id="savedLists"></div></div></section>
+<div class="extra"><details id="textModeDetails"><summary>✎ Andere Handschrift scannen · Notizen / Briefe</summary><p class="muted">Erkennt zusammenhängenden Text mit Absätzen statt einzelner Listeneinträge.</p><div class="mode-options"><button type="button" id="modeNote" class="selected">Notiz</button><button type="button" id="modeLetter" class="secondary">Brief</button></div><label class="camera" for="textPhoto" style="min-height:105px;padding:17px"><strong style="font-size:17px">Text fotografieren</strong><span class="hint">Notiz oder Brief</span></label><input id="textPhoto" type="file" accept="image/*" capture="environment"><img id="textPreview" class="preview" alt="Textfoto"><div id="textSection" hidden><label class="field" for="textOutput">ERKANNTER TEXT · BEARBEITBAR</label><textarea id="textOutput" class="text-result" spellcheck="true" placeholder="Erkannter Text erscheint hier"></textarea><div class="actions"><button id="copyText" class="secondary">Text kopieren</button><button id="saveText">Text speichern</button><button id="retryText" class="secondary" hidden>Erneut versuchen</button></div></div><div id="textStatus" class="status" role="status"></div><div id="savedTexts" class="saved"></div></details></div><div class="settings"><details id="settings"><summary>⚙ Gemini einrichten / Einstellungen</summary><label class="field" for="key">Gemini-API-Schlüssel</label><input type="password" id="key" placeholder="API-Schlüssel hier einfügen" autocomplete="off"><div class="actions"><button id="save">Schlüssel speichern</button><button id="remove" class="secondary">Schlüssel löschen</button></div><p class="muted">Der Schlüssel wird nur auf diesem Gerät in diesem Browser gespeichert. Teile die HTML-Datei nicht mit eingetragenem Schlüssel. Auf gemeinsam genutzten Geräten ist lokales Speichern nicht sicher.</p><label class="field" for="words">Häufige Begriffe (optional, ein Begriff pro Zeile)</label><textarea id="words" placeholder="Parmesan&#10;Olivenöl&#10;Avocado"></textarea><div class="actions"><button id="savewords" class="secondary">Wörterbuch speichern</button></div><p class="muted">Für die Erkennung wird das Foto an die Google-Gemini-API gesendet. Internetverbindung erforderlich. API-Nutzung kann Kosten verursachen, abhängig von deinem Tarif und den Limits.</p></details></div>
+</main><script>
+'use strict';const $=id=>document.getElementById(id);const STORE='zettelscan_gemini_key_v1',DICT='zettelscan_words_v1';let entries=[];const LISTS='zettelscan_saved_lists_v1',DRAFT='zettelscan_current_draft_v1';let activeSavedId=null;function readLists(){try{const v=JSON.parse(localStorage.getItem(LISTS)||'[]');return Array.isArray(v)?v:[]}catch{return []}}function persistDraft(){try{localStorage.setItem(DRAFT,JSON.stringify({entries,activeSavedId}))}catch{}}try{const d=JSON.parse(localStorage.getItem(DRAFT)||'null');if(d&&Array.isArray(d.entries)){entries=d.entries.filter(e=>e&&typeof e.text==='string').map(e=>({text:e.text,checked:!!e.checked}));activeSavedId=d.activeSavedId||null}}catch{}
+$('key').value=localStorage.getItem(STORE)||'';$('words').value=localStorage.getItem(DICT)||'';
+$('save').onclick=()=>{const k=$('key').value.trim();if(!k){setStatus('Bitte einen API-Schlüssel einfügen.');return}localStorage.setItem(STORE,k);setStatus('Schlüssel gespeichert. Jetzt kannst du ein Foto aufnehmen.');$('settings').open=false};
+$('remove').onclick=()=>{localStorage.removeItem(STORE);$('key').value='';setStatus('Schlüssel gelöscht.')};
+$('savewords').onclick=()=>{localStorage.setItem(DICT,$('words').value);setStatus('Wörterbuch gespeichert.')};
+function setStatus(t,loading=false){$('status').innerHTML='';if(loading){const s=document.createElement('span');s.className='spinner';$('status').append(s,' ')}$('status').append(document.createTextNode(t))}
+function updateCompletion(){const all=entries.length>0&&entries.every(e=>e.checked||!e.text.trim());$('completion').classList.toggle('show',all)}
+function render(){const root=$('items');root.replaceChildren();if(!entries.length){root.innerHTML='<div class="empty">Keine Einträge erkannt.</div>'}entries.forEach((e,i)=>{const row=document.createElement('div');row.className='item';const c=document.createElement('input');c.type='checkbox';c.checked=e.checked;c.setAttribute('aria-label','Erledigt');c.onchange=()=>{e.checked=c.checked;row.classList.toggle('done',e.checked);persistDraft();updateCompletion()};row.classList.toggle('done',!!e.checked);const t=document.createElement('input');t.type='text';t.value=e.text;t.setAttribute('aria-label','Eintrag bearbeiten');t.oninput=()=>{e.text=t.value;persistDraft();updateCompletion()};const edit=document.createElement('button');edit.type='button';edit.className='edit-word';edit.textContent='✎';edit.setAttribute('aria-label','Wort bearbeiten');edit.onclick=()=>{t.focus();t.select()};const del=document.createElement('button');del.type='button';del.className='delete-word';del.textContent='×';del.title='Lebensmittel entfernen';del.setAttribute('aria-label','Lebensmittel '+(e.text||'')+' aus Liste entfernen');del.onclick=()=>{const name=e.text.trim()||'Leerer Eintrag';entries.splice(i,1);persistDraft();render();setStatus('„'+name+'“ aus der Liste entfernt.');};row.append(c,t,edit,del);root.append(row)});$('copy').hidden=!entries.length;$('add').hidden=false;$('saveList').hidden=!entries.length;$('clearList').hidden=!entries.length;updateCompletion()}
+$('clearList').onclick=()=>{if(!entries.length)return;if(!confirm('Aktuelle Liste wirklich leeren? Gespeicherte Listen bleiben erhalten.'))return;entries=[];activeSavedId=null;persistDraft();render();$('savePanel').hidden=true;const preview=$('preview');if(preview.dataset.url){URL.revokeObjectURL(preview.dataset.url);delete preview.dataset.url}preview.removeAttribute('src');preview.style.display='none';setStatus('Liste geleert. Gespeicherte Listen bleiben erhalten.')};
+$('add').onclick=()=>{entries.push({text:'',checked:false});persistDraft();render();$('items').lastElementChild.querySelector('input[type=text]').focus()};
+$('copy').onclick=async()=>{const txt=entries.filter(e=>e.text.trim()).map(e=>(e.checked?'✓ ':'☐ ')+e.text.trim()).join('\n');try{await navigator.clipboard.writeText(txt);setStatus('Liste kopiert.')}catch{const t=document.createElement('textarea');t.value=txt;document.body.append(t);t.select();document.execCommand('copy');t.remove();setStatus('Liste kopiert (falls vom Browser unterstützt).')}};
+function discardScanImage(kind){
+ const isText=kind==='text';
+ const preview=$(isText?'textPreview':'preview');
+ if(preview.dataset.url){URL.revokeObjectURL(preview.dataset.url);delete preview.dataset.url}
+ preview.removeAttribute('src');preview.style.display='none';
+ if(isText){lastTextBase64=null;$('textPhoto').value='';$('retryText').hidden=true}
+ else{lastBase64=null;$('photo').value='';$('retry').hidden=true}
+}
+function imageData(file){return new Promise((resolve,reject)=>{const img=new Image(),url=URL.createObjectURL(file);img.onload=()=>{try{const max=1800,scale=Math.min(1,max/Math.max(img.width,img.height));const canvas=document.createElement('canvas');canvas.width=Math.round(img.width*scale);canvas.height=Math.round(img.height*scale);canvas.getContext('2d').drawImage(img,0,0,canvas.width,canvas.height);const b64=canvas.toDataURL('image/jpeg',.85).split(',')[1];URL.revokeObjectURL(url);resolve(b64)}catch(e){reject(e)}};img.onerror=()=>{URL.revokeObjectURL(url);reject(Error('Bild konnte nicht geöffnet werden.'))};img.src=url})}
+let lastBase64=null, working=false;
+const wait=ms=>new Promise(resolve=>setTimeout(resolve,ms));
+async function api(url,key,options={}){
+ const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),35000);
+ try{return await fetch(url,{...options,headers:{'x-goog-api-key':key,...(options.headers||{})},signal:controller.signal})}finally{clearTimeout(timer)}
+}
+async function availableModels(key){
+ const r=await api('https://generativelanguage.googleapis.com/v1beta/models?pageSize=100',key);
+ const d=await r.json().catch(()=>({}));
+ if(!r.ok)throw Error(d.error?.message||'Modellliste nicht verfügbar ('+r.status+').');
+ const models=(d.models||[]).filter(m=>m.supportedGenerationMethods?.includes('generateContent'));
+ // Only models returned by the API are used. Prefer inexpensive Flash variants.
+ const rank=m=>{const n=m.name.toLowerCase();return (n.includes('flash-lite')?0:n.includes('flash')?1:10)+(n.includes('preview')?3:0)+(n.includes('gemini-2.')?2:0)};
+ return models.filter(m=>/gemini.*flash/i.test(m.name)).sort((a,b)=>rank(a)-rank(b)).map(m=>m.name).slice(0,5);
+}
+async function recognize(){
+ if(working||!lastBase64)return;
+ const key=localStorage.getItem(STORE);if(!key){$('settings').open=true;setStatus('Bitte zuerst deinen Gemini-API-Schlüssel speichern.');return}
+ working=true;$('retry').hidden=true;
+ const dict=(localStorage.getItem(DICT)||'').split('\n').map(x=>x.trim()).filter(Boolean).slice(0,150);
+ const prompt='Lies ALLE handschriftlichen Einträge auf diesem Foto sorgfältig, zeilenweise von oben nach unten. Gib nur die tatsächlich sichtbaren Einträge wieder, ohne zusätzliche zu erfinden. Nutze sprachlichen Kontext für schwer lesbare Wörter. Erhalte Mengen und Einheiten. Antworte ausschließlich als JSON-Array von Strings, z.B. ["2 Äpfel","Milch"].'+(dict.length?' Häufige Wörter als mögliche Lesehilfe (nur verwenden, wenn das Bild sie stützt): '+dict.join(', '):'');
+ try{
+  setStatus('Verfügbare Gemini-Modelle werden geprüft …',true);
+  const models=await availableModels(key);if(!models.length)throw Error('Für diesen Schlüssel wurde kein geeignetes Gemini-Flash-Modell gefunden.');
+  let lastError='';let success=false;
+  for(const model of models){
+   for(let attempt=0;attempt<2;attempt++){
+    setStatus('Handschrift wird erkannt …'+(attempt?' (erneuter Versuch)':''),true);
+    try{
+     const response=await api('https://generativelanguage.googleapis.com/v1beta/'+model+':generateContent',key,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({contents:[{parts:[{text:prompt},{inline_data:{mime_type:'image/jpeg',data:lastBase64}}]}],generationConfig:{responseMimeType:'application/json',temperature:0.1}})});
+     const data=await response.json().catch(()=>({}));
+     if(!response.ok){lastError=data.error?.message||'API-Fehler '+response.status;
+       if([429,500,502,503,504].includes(response.status)){if(attempt===0){await wait(1500);continue}break}
+       if([400,404].includes(response.status))break;
+       throw Error(lastError);
+     }
+     const raw=(data.candidates?.[0]?.content?.parts||[]).map(p=>p.text||'').join('');let parsed;
+     try{parsed=JSON.parse(raw.replace(/^```(?:json)?\s*|\s*```$/g,''))}catch{throw Error('Gemini hat kein gültiges Ergebnis geliefert.')}
+     if(!Array.isArray(parsed))throw Error('Unerwartetes Antwortformat.');
+     entries=parsed.filter(x=>typeof x==='string'&&x.trim()).map(text=>({text:text.trim(),checked:false}));activeSavedId=null;persistDraft();render();
+     setStatus(entries.length?entries.length+' Einträge erkannt. Du kannst sie direkt bearbeiten.':'Keine Einträge erkannt. Versuche ein helleres, schärferes Foto.');if(entries.length)discardScanImage('list');success=true;break;
+    }catch(e){lastError=e.name==='AbortError'?'Zeitüberschreitung.':e.message;if(/API key|permission|quota|billing|leaked|invalid/i.test(lastError))throw Error(lastError);if(attempt===0){await wait(1500);continue}}
+   }
+   if(success)break;
+  }
+  if(!success)throw Error('Gemini ist derzeit nicht erreichbar oder ausgelastet. '+lastError);
+ }catch(e){setStatus('Erkennung fehlgeschlagen: '+e.message+'\nDu kannst es mit demselben Foto erneut versuchen.');$('retry').hidden=false}
+ finally{working=false}
+}
+
+function renderSaved(){const root=$('savedLists');root.replaceChildren();const lists=readLists();$('savedSection').hidden=!lists.length;lists.forEach(list=>{const row=document.createElement('div');row.className='saved-row';const open=document.createElement('button');open.className='saved-name';open.textContent=list.name||'Unbenannte Liste';open.title='Liste öffnen';open.onclick=()=>{if(entries.length&&!confirm('Gespeicherte Liste öffnen? Nicht gespeicherte Änderungen an der aktuellen Liste gehen verloren.'))return;entries=(list.entries||[]).map(e=>({text:String(e.text||''),checked:!!e.checked}));activeSavedId=list.id;persistDraft();render();$('savePanel').hidden=true;setStatus('Liste „'+list.name+'“ geöffnet.');window.scrollTo({top:0,behavior:'smooth'})};const del=document.createElement('button');del.className='secondary mini';del.textContent='Löschen';del.onclick=()=>{if(!confirm('Liste „'+list.name+'“ wirklich löschen?'))return;const updated=readLists().filter(x=>x.id!==list.id);try{localStorage.setItem(LISTS,JSON.stringify(updated));if(activeSavedId===list.id)activeSavedId=null;persistDraft();renderSaved();setStatus('Liste gelöscht.')}catch{setStatus('Löschen fehlgeschlagen.')}};row.append(open,del);root.append(row)})}
+$('saveList').onclick=()=>{const existing=readLists().find(l=>l.id===activeSavedId);$('listName').value=existing?.name||'Liste '+new Date().toLocaleDateString('de-DE');$('savePanel').hidden=false;$('listName').focus()};
+$('cancelSave').onclick=()=>{$('savePanel').hidden=true};
+$('confirmSave').onclick=()=>{const name=$('listName').value.trim();if(!name){setStatus('Bitte einen Namen für die Liste eingeben.');return}const lists=readLists();const id=activeSavedId||('list_'+Date.now()+'_'+Math.random().toString(36).slice(2));const snapshot={id,name,entries:entries.map(e=>({text:e.text,checked:!!e.checked})),updatedAt:Date.now()};const idx=lists.findIndex(l=>l.id===id);if(idx>=0)lists.splice(idx,1);lists.unshift(snapshot);try{localStorage.setItem(LISTS,JSON.stringify(lists));activeSavedId=id;persistDraft();$('savePanel').hidden=true;renderSaved();setStatus('Liste „'+name+'“ gespeichert.')}catch{setStatus('Speichern fehlgeschlagen. Möglicherweise ist der Gerätespeicher voll.')}};
+render();renderSaved();
+
+
+// Separate OCR for continuous handwriting; no image persisted in localStorage.
+const TEXTS='zettelscan_saved_texts_v1',TEXTDRAFT='zettelscan_text_draft_v1';let textKind='Notiz',lastTextBase64=null,textBusy=false;
+function setTextStatus(msg,loading=false){$('textStatus').replaceChildren();if(loading){const sp=document.createElement('span');sp.className='spinner';$('textStatus').append(sp,' ')}$('textStatus').append(document.createTextNode(msg))}
+function chooseTextKind(kind){textKind=kind;$('modeNote').className=kind==='Notiz'?'selected':'secondary';$('modeLetter').className=kind==='Brief'?'selected':'secondary'}
+$('modeNote').onclick=()=>chooseTextKind('Notiz');$('modeLetter').onclick=()=>chooseTextKind('Brief');
+$('textOutput').value=localStorage.getItem(TEXTDRAFT)||'';
+$('textOutput').oninput=()=>{try{localStorage.setItem(TEXTDRAFT,$('textOutput').value)}catch{}};
+$('textSection').hidden=!$('textOutput').value;
+function readTexts(){try{const v=JSON.parse(localStorage.getItem(TEXTS)||'[]');return Array.isArray(v)?v:[]}catch{return []}}
+function renderTexts(){const root=$('savedTexts');root.replaceChildren();const data=readTexts();if(!data.length)return;const heading=document.createElement('div');heading.className='small';heading.textContent='GESPEICHERTE TEXTE';root.append(heading);data.forEach(item=>{const row=document.createElement('div');row.className='saved-row';const open=document.createElement('button');open.className='saved-name';open.textContent=item.name;open.onclick=()=>{$('textOutput').value=item.text;$('textSection').hidden=false;chooseTextKind(item.kind||'Notiz');$('textOutput').dispatchEvent(new Event('input'));setTextStatus('Text geöffnet.')};const del=document.createElement('button');del.className='secondary mini';del.textContent='Löschen';del.onclick=()=>{if(!confirm('Text löschen?'))return;localStorage.setItem(TEXTS,JSON.stringify(readTexts().filter(x=>x.id!==item.id)));renderTexts()};row.append(open,del);root.append(row)})}
+$('saveText').onclick=()=>{const value=$('textOutput').value.trim();if(!value){setTextStatus('Kein Text zum Speichern.');return}const name=prompt('Name für diesen Text:',textKind+' '+new Date().toLocaleDateString('de-DE'));if(!name?.trim())return;const data=readTexts();data.unshift({id:Date.now()+'_'+Math.random(),name:name.trim(),kind:textKind,text:value});try{localStorage.setItem(TEXTS,JSON.stringify(data));renderTexts();setTextStatus('Text gespeichert.')}catch{setTextStatus('Speichern fehlgeschlagen: Speicher voll.')}};
+$('copyText').onclick=async()=>{try{await navigator.clipboard.writeText($('textOutput').value);setTextStatus('Text kopiert.')}catch{const el=$('textOutput');el.focus();el.select();document.execCommand('copy');setTextStatus('Text kopiert, falls vom Browser unterstützt.')}};
+async function recognizeText(){if(textBusy||!lastTextBase64)return;const key=localStorage.getItem(STORE);if(!key){$('settings').open=true;setTextStatus('Bitte erst Gemini-Schlüssel speichern.');return}textBusy=true;$('retryText').hidden=true;try{setTextStatus('Handschrift wird gelesen …',true);const models=await availableModels(key);if(!models.length)throw Error('Kein Gemini-Modell verfügbar.');const promptText='Transkribiere den gesamten handschriftlichen '+(textKind==='Brief'?'Brief':'Notiztext')+' auf diesem Foto vollständig und möglichst wortgetreu. Bewahre Zeilenumbrüche, Absätze, Anrede, Grußformel, Namen und Satzzeichen. Keine Zusammenfassung, keine Ergänzungen, keine Überschriften erfinden. Bei unleserlichen Stellen schreibe [unleserlich]. Antworte ausschließlich mit dem reinen transkribierten Text, ohne Markdown oder JSON.';let error='Keine Antwort';let done=false;for(const model of models){for(let attempt=0;attempt<2;attempt++){try{const r=await api('https://generativelanguage.googleapis.com/v1beta/'+model+':generateContent',key,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({contents:[{parts:[{text:promptText},{inline_data:{mime_type:'image/jpeg',data:lastTextBase64}}]}],generationConfig:{temperature:0.1}})});const data=await r.json().catch(()=>({}));if(!r.ok){error=data.error?.message||'API '+r.status;if([429,500,502,503,504].includes(r.status)){if(!attempt){await wait(1400);continue}break}if([400,404].includes(r.status))break;throw Error(error)}const txt=(data.candidates?.[0]?.content?.parts||[]).map(p=>p.text||'').join('').trim();if(!txt)throw Error('Keine Handschrift erkannt.');$('textOutput').value=txt;$('textOutput').dispatchEvent(new Event('input'));$('textSection').hidden=false;setTextStatus('Text erkannt. Du kannst ihn bearbeiten und speichern.');discardScanImage('text');done=true;break}catch(e){error=e.name==='AbortError'?'Zeitüberschreitung':e.message;if(/API key|permission|quota|billing|leaked|invalid/i.test(error))throw Error(error);if(!attempt)await wait(1400)}}if(done)break}if(!done)throw Error(error)}catch(e){setTextStatus('Erkennung fehlgeschlagen: '+e.message);$('retryText').hidden=false}finally{textBusy=false}}
+$('retryText').onclick=recognizeText;
+$('textPhoto').onchange=async ev=>{const file=ev.target.files?.[0];if(!file)return;ev.target.value='';discardScanImage('text');const preview=$('textPreview');preview.dataset.url=URL.createObjectURL(file);preview.src=preview.dataset.url;preview.style.display='block';try{lastTextBase64=await imageData(file);await recognizeText()}catch(e){setTextStatus('Bildfehler: '+e.message)}};
+renderTexts();
+
+$('retry').onclick=recognize;
+$('photo').onchange=async ev=>{
+ const file=ev.target.files?.[0];if(!file)return;ev.target.value='';
+ discardScanImage('list');const preview=$('preview');
+ preview.dataset.url=URL.createObjectURL(file);preview.src=preview.dataset.url;preview.style.display='block';
+ setStatus('Foto wird vorbereitet …',true);$('retry').hidden=true;
+ try{lastBase64=await imageData(file);await recognize()}catch(e){setStatus('Bild konnte nicht verarbeitet werden: '+e.message)}
+};
+</script></body></html>
